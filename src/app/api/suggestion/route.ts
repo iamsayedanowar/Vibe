@@ -2,7 +2,6 @@ import { google } from "@ai-sdk/google";
 import { generateText, Output } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-// import { groq } from '@ai-sdk/groq';
 // import { openai } from '@ai-sdk/openai';
 // import { xai } from '@ai-sdk/xai';
 // import { anthropic } from '@ai-sdk/anthropic';
@@ -71,7 +70,7 @@ export async function POST(request: Request) {
             .replace("{nextLines}", nextLines || "")
             .replace("{lineNumber}", lineNumber.toString());
         const { output } = await generateText({
-            model: google("gemini-2.5-flash-lite"),
+            model: google("gemini-2.5-pro"),
             output: Output.object({ schema: suggestionSchema }),
             prompt,
         });

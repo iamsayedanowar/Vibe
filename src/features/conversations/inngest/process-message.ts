@@ -5,7 +5,7 @@ import { convex } from "@/lib/convex-client";
 import { api } from "../../../../convex/_generated/api";
 import { CODING_AGENT_SYSTEM_PROMPT, TITLE_GENERATOR_SYSTEM_PROMPT } from "./constants";
 import { DEFAULT_CONVERSATION_TITLE } from "../constants";
-import { createAgent, createNetwork, gemini } from '@inngest/agent-kit';
+import { createAgent, createNetwork, gemini, openai, anthropic, grok } from '@inngest/agent-kit';
 import { createListFilesTool } from "./tools/list-files";
 import { createReadFilesTool } from "./tools/read-files";
 import { createUpdateFileTool } from "./tools/update-file";
@@ -86,7 +86,7 @@ export const processMessage = inngest.createFunction(
                 name: "title-generator",
                 system: TITLE_GENERATOR_SYSTEM_PROMPT,
                 model: gemini({
-                    model: "gemini-2.5-flash",
+                    model: "gemini-2.5-pro",
                 }),
             });
             const { output } = await titleAgent.run(message, { step });
@@ -109,7 +109,7 @@ export const processMessage = inngest.createFunction(
             description: "An expert AI coding assistant",
             system: systemPrompt,
             model: gemini({
-                model: "gemini-2.5-flash",
+                model: "gemini-2.5-pro",
             }),
             tools: [
                 createListFilesTool({ internalKey, projectId }),
