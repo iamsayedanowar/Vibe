@@ -2,9 +2,9 @@ import { google } from "@ai-sdk/google";
 import { generateText, Output } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-// import { openai } from '@ai-sdk/openai';
-// import { xai } from '@ai-sdk/xai';
-// import { anthropic } from '@ai-sdk/anthropic';
+import { openai } from '@ai-sdk/openai';
+import { xai } from '@ai-sdk/xai';
+import { anthropic } from '@ai-sdk/anthropic';
 import { auth } from "@clerk/nextjs/server";
 import { firecrawl } from "@/lib/firecrawl";
 
