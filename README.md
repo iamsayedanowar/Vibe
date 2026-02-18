@@ -1,4 +1,4 @@
-![Vibe](/GRP.png)
+![Vibe](https://raw.githubusercontent.com/iamsayedanowar/Vibe/refs/heads/main/GRP.png)
 
 # Vibe
 
@@ -213,3 +213,44 @@ const codingAgent = createAgent({
 - Copy the `API Key` and Paste it into `FIRECRAWL_API_KEY` in your `.env.local` file
 
 **5. Sentry Setup**
+- Go to **Sentry**
+- Click **Create Project**
+- Select `NEXT.JS`
+- Project slug: `YOUR_PROJECT_SLUG`
+- Click **Create Project**
+- Now you can see an Automatic Configuration Command like this: `npx @sentry/wizard@latest -i nextjs --saas --org <YOUR_ORG> --project <YOUR_PROJECT_SLUG>`
+- Copy the command and run it in your project root terminal
+- Now follow these steps:
+  - You are not inside a git repository. The wizard will create and update files. Do you want to continue anyway? `Yes`
+  - The **`@sentry/nextjs`** package is already installed. Do you want to update it to the latest version? `Yes`
+  - Do you want to route Sentry requests in the browser through your Next.js server to avoid ad blockers? `Yes`
+  - Do you want to enable **Tracing** to track the performance of your application? `Yes`
+  - Do you want to enable **Session Replay** to get a video-like reproduction of errors during a user session? `Yes`
+  - Do you want to enable **Logs** to send your application logs to Sentry? `Yes`
+  - Found existing Sentry server config (sentry.server.config.ts). Overwrite it? `Yes`
+  - Found existing Sentry edge config (sentry.edge.config.ts). Overwrite it? `Yes`
+  - Did you apply the snippet above? `Yes, continue!`
+  - Did you apply the snippet above? `Yes, continue!`
+  - `next.config.ts` already contains Sentry SDK configuration. Should the wizard modify it anyways? `Yes`
+  - Did you add the code to your `src\app\global-error.tsx` file as described above? `Yes`
+  - Do you want to create an example page ("`/sentry-example-page`") to test your Sentry setup? `Yes`
+  - Are you using a CI/CD tool to build and deploy your application? `Yes`
+  - Did you configure CI as shown above? `Yes`
+  - Optionally add a project-scoped MCP server configuration for the Sentry MCP? `No`
+- After this, in the root directory of this project, a file named `.env.sentry-build-plugin` is added that includes the `SENTRY_AUTH_TOKEN`
+- Now you can delete these two folders:
+  - `src\app\sentry-example-page`
+  - `src\app\api\sentry-example-api`
+- Last but not least, add the below code to these two files: `sentry.edge.config.ts`, `sentry.server.config.ts` after `sendDefaultPii: true` this line
+```bash
+integrations: [
+    Sentry.vercelAIIntegration,
+    Sentry.consoleLoggingIntegration({
+        levels: ["log", "warn", "error"],
+    }),
+]
+```
+- Now all set, start the development server:
+```bash
+npm run dev
+```
