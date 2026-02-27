@@ -27,6 +27,9 @@ export const UnauthenticatedView = () => {
                         </SignInButton>
                     </ItemActions>
                 </Item>
+                <div className='bg-background text-muted-foreground p-2 text-sm text-justify'>
+                    <b>Notice:</b> This project runs on the free tier of the Gemini API. Due to free-tier limitations, you may experience slower responses or easily hit the rate limits and experience temporary downtime. If the app stops responding or something doesn't work, please try again after a short wait. To avoid rate limits, you can configure and use your own AI providers and paid API models in Settings; just run the project locally. For the configuration guide, visit the <a href="https://github.com/iamsayedanowar/Vibe" target='_blank' className='underline'>GitHub repo</a>.
+                </div>
             </div>
         </div>
     );

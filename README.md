@@ -252,5 +252,14 @@ integrations: [
 ```
 - Now all set, start the development server:
 ```bash
+# Terminal 1
 npm run dev
+
+# Terminal 2
+npx convex dev
+
+# Terminal 3
+npx inngest-cli@latest dev
+# OR
+npx --ignore-scripts=false inngest-cli@latest dev
 ```
